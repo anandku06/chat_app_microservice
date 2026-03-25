@@ -2,7 +2,7 @@
   "name": "chat_app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "pnpm -r --workspace-root=false run test",
     "build": "pnpm -r --workspace-root=false run build",
