@@ -6,9 +6,12 @@
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
     "declaration": true,
     "declarationMap": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "@/": ["src/*"]
+      "@/*": ["src/*"],
+      "@chat_app/common": ["../../packages/common/src/index.ts"],
+      "@chat_app/common/*": ["../../packages/common/src/*"]
     }
   },
   "include": ["src"],
