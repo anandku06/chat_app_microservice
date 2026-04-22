@@ -8,6 +8,8 @@ type CreateLoggerOptions = LoggerOptions & {
 export const createLogger = (options: CreateLoggerOptions): Logger => {
   const { name, ...rest } = options;
 
+  // In development, we want to use pino-pretty for better readability of logs. In production, we can use the default pino logger which is more performant.
+
   const transport =
     process.env.NODE_ENV === "development"
       ? {

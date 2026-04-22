@@ -1,6 +1,7 @@
 import express, { type Application } from "express";
 import cors from "cors";
 import helmet from "helmet";
+import { errorHandler } from "./middlewares/error-handler";
 
 export const createApp = (): Application => {
   const app = express();
@@ -19,6 +20,9 @@ export const createApp = (): Application => {
   app.use((_req, res) => {
     res.status(404).json({ message: "Not Found" });
   });
+
+  // Error handling middleware should be the last middleware in the stack, so it can catch errors from all previous middlewares and routes.
+  app.use(errorHandler);
 
   return app;
 };
