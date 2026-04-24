@@ -21,15 +21,19 @@
   "packageManager": "pnpm@10.25.0",
   "dependencies": {
     "@chat_app/common": "workspace:^",
+    "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
     "mysql2": "^3.22.2",
     "sequelize": "^6.37.8"
   },
   "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
-    "@types/express": "^5.0.6"
+    "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10"
   }
 }
