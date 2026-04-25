@@ -2,6 +2,7 @@ import express, { type Application } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { errorHandler } from "./middlewares/error-handler";
+import { registerRoutes } from "@/routes";
 
 export const createApp = (): Application => {
   const app = express();
@@ -15,6 +16,9 @@ export const createApp = (): Application => {
   );
   app.use(express.json());
   app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+  // Register application routes
+  registerRoutes(app);
 
   // for routes that are not defined, return a 404 response
   app.use((_req, res) => {
