@@ -13,6 +13,18 @@ services:
       - auth_db_data:/var/lib/mysql
     networks:
       - chatapp_network
+  
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: chatapp_rabbitmq
+    ports:
+      - "${RABBITMQ_PORT:-5672}:5672" # RabbitMQ main port
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672" # RabbitMQ management UI port
+    networks:
+      - chatapp_network
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-guest}
 
 volumes:
   auth_db_data:
