@@ -1,4 +1,5 @@
 import { sequelize } from "@/db/sequelize";
+import { publishUserRegistered } from "@/messaging/message-publish";
 import { RefreshToken, UserCredentials } from "@/models";
 import { AuthResponse, RegisterInput } from "@/types/auth";
 import { hashPassword, signAccessToken, signRefreshToken } from "@/utils/token";
@@ -47,7 +48,7 @@ export const register = async (input: RegisterInput): Promise<AuthResponse> => {
       createdAt: user.createdAt.toISOString(),
     };
 
-    // todo: publish event to message broker
+    publishUserRegistered(userData); // Publish the user registered event to RabbitMQ
 
     return {
       accessToken,
