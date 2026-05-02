@@ -8,3 +8,4 @@ export { z } from "zod";
 export * from "./errors/http-error";
 export * from "./http/validate-request";
 export * from "./http/async-handler";
+export * from "./http/internal-auth";

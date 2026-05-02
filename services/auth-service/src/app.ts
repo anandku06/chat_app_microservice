@@ -3,6 +3,8 @@ import cors from "cors";
 import helmet from "helmet";
 import { errorHandler } from "./middlewares/error-handler";
 import { registerRoutes } from "@/routes";
+import { createInternalAuthMiddleware } from "@chat_app/common";
+import { env } from "@/config/env";
 
 export const createApp = (): Application => {
   const app = express();
@@ -16,6 +18,7 @@ export const createApp = (): Application => {
   );
   app.use(express.json());
   app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+  app.use(createInternalAuthMiddleware(env.INTERNAL_API_TOKEN)); // Middleware to authenticate internal service requests
 
   // Register application routes
   registerRoutes(app);

@@ -11,6 +11,7 @@ const envSchema = z.object({
   JWT_EXPIRES_IN: z.string().default("1d"),
   JWT_REFRESH_SECRET: z.string().min(32),
   JWT_REFRESH_EXPIRES_IN: z.string().default("7d"),
+  INTERNAL_API_TOKEN: z.string().min(16, "Internal API token is required"),
 });
 
 type EnvType = z.infer<typeof envSchema>; // Infer the TypeScript type from the Zod schema
