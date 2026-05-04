@@ -1,4 +1,19 @@
 services:
+  user-db:
+    image: postgres:16
+    container_name: chatapp_user_db
+    environment:
+      POSTGRES_DB: ${USER_DB_NAME:-chatapp_user_service}
+      POSTGRES_USER: ${USER_DB_USER:-chatapp_user}
+      POSTGRES_PASSWORD: ${USER_DB_PASSWORD:-chatapp_password}
+    ports:
+      - "${USER_DB_PORT:-5432}:5432"
+    volumes:
+      - user_db_data:/var/lib/postgresql/data
+    networks:
+      - chatapp_network
+
+
   auth-db:
     image: mysql:8.0
     container_name: chatapp_auth_db
@@ -28,6 +43,7 @@ services:
 
 volumes:
   auth_db_data:
+  user_db_data:
 
 # Define the custom network for the chat application services
 # This network allows the services to communicate with each other using their service names as hostnames.
