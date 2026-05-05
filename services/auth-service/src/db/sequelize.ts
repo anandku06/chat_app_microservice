@@ -21,11 +21,11 @@ export const sequelize = new Sequelize(env.AUTH_DB_URL, {
 export const connectToDatabase = async () => {
   // attempts to establish a connection to the database using the Sequelize instance
   await sequelize.authenticate();
-  logger.info("Database connection established successfully.");
+  logger.info("Auth Database connection established successfully.");
 };
 
 export const disconnectFromDatabase = async () => {
   // closes the database connection gracefully.
   await sequelize.close();
-  logger.info("Database connection closed successfully.");
+  logger.info("Auth Database connection closed successfully.");
 };

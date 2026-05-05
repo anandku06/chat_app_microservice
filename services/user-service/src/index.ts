@@ -2,9 +2,12 @@ import { createApp } from "@/app";
 import { createServer } from "http";
 import { env } from "@/config/env";
 import { logger } from "@/utils/logger";
+import { disconnectFromDatabase, initializeDatabase } from "@/db/sequelize";
 
 const main = async () => {
   try {
+    await initializeDatabase();
+
     const app = createApp();
     const server = createServer(app);
 
@@ -17,7 +20,7 @@ const main = async () => {
     const shutdown = () => {
       logger.info("Shutting down user service...");
 
-      Promise.all([])
+      Promise.all([disconnectFromDatabase()])
         .catch((error) => {
           logger.error({ error }, "Error during shutdown");
         })
